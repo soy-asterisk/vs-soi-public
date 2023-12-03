@@ -1,0 +1,7 @@
+<!DOCTYPE codename-engine-week>
+<week name="PURPLE HEADPHONE" chars="soi,bf,gf" sprite="weeksoi">
+    <!-- <difficulty name="HARD"/> -->
+    <song>sad night</song>
+    <song>midnight</song>
+    <song hide="true">daybreak</song>
+</week>

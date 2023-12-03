@@ -1,0 +1,10 @@
+{
+	"difficulties":["EASY","NORMAL","HARD"],
+	"displayName": "Midnight",
+	"artist":"soy*",
+	"bpm": 175,
+	"icon": "soi",
+	"color": "#4870FF",
+	"coopAllowed": true,
+	"opponentModeAllowed": true
+}

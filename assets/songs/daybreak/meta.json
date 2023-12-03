@@ -1,0 +1,10 @@
+{
+	"difficulties":["HARD"],
+	"displayName": "Daybreak",
+	"artist":"soy*",
+	"bpm": 180,
+	"icon": "soi",
+	"color": "#2F4AA9",
+	"coopAllowed": true,
+	"opponentModeAllowed": true
+}

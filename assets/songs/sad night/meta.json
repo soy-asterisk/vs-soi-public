@@ -1,0 +1,10 @@
+{
+	"difficulties":["EASY","NORMAL","HARD"],
+	"displayName": "Sad night",
+	"artist":"soy*",
+	"bpm": 155,
+	"icon": "soi",
+	"color": "#4870FF",
+	"coopAllowed": true,
+	"opponentModeAllowed": true
+}

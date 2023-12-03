@@ -1,0 +1,11 @@
+{
+	"difficulties":["EASY","NORMAL","HARD"],
+	"displayName": "Tutorial",
+	"artist":"Kawai Sprite",
+	"bpm": 100.0,
+	"icon": "gf",
+	"color": "#9271FD",
+	"coopAllowed": true,
+	"opponentModeAllowed": true,
+	"needsVoices": false
+}
