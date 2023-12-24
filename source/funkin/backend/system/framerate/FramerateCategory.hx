@@ -49,4 +49,18 @@ class FramerateCategory extends Sprite {
 		bgSprite.scaleX = width;
 		bgSprite.scaleY = height;
 	}
+
+    public function resetTextField(){
+		var oldText = this.text.text;
+        removeChild(this.text);
+        this.text = new TextField();
+        this.text.autoSize = LEFT;
+        this.text.x = 0;
+        this.text.y = 0;
+        this.text.defaultTextFormat = new TextFormat(Framerate.fontName, 12, -1);
+        addChild(this.text);
+        this.text.multiline = true;
+        this.text.y = this.title.y + this.title.height + 2;
+		this.text.text = oldText;
+    }
 }

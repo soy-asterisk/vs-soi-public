@@ -1,5 +1,6 @@
 package funkin.menus;
 
+import funkin.backend.system.Conductor;
 import funkin.backend.chart.Chart;
 import funkin.backend.chart.ChartData;
 import haxe.io.Path;
@@ -261,7 +262,8 @@ class FreeplayState extends MusicBeatState
 		autoplayElapsed += elapsed;
 		if (!disableAutoPlay && !songInstPlaying && (autoplayElapsed > timeUntilAutoplay || FlxG.keys.justPressed.SPACE)) {
 			if (curPlayingInst != (curPlayingInst = Paths.inst(songs[curSelected].name, songs[curSelected].difficulties[curDifficulty]))) {
-				var huh:Void->Void = function() FlxG.sound.playMusic(curPlayingInst, 0);
+				Conductor.changeBPM(songs[curSelected].bpm, cast songs[curSelected].beatsPerMesure.getDefault(4), cast songs[curSelected].stepsPerBeat.getDefault(4));
+				var huh:Void->Void = function()FlxG.sound.playMusic(curPlayingInst, 0);
 				if(!disableAsyncLoading) Main.execAsync(huh);
 				else huh();
 			}
@@ -371,10 +373,10 @@ class FreeplayState extends MusicBeatState
 	 * Array containing all labels for Co-Op / Opponent modes.
 	 */
 	public var coopLabels:Array<String> = [
-		"[TAB] Solo",
-		"[TAB] Opponent Mode",
-		"[TAB] Co-Op Mode",
-		"[TAB] Co-Op Mode (Switched)"
+		"[TAB or LB,RB] Solo",
+		"[TAB or LB,RB] Opponent Mode",
+		"[TAB or LB,RB] Co-Op Mode",
+		"[TAB or LB,RB] Co-Op Mode (Switched)"
 	];
 
 	/**
@@ -415,10 +417,22 @@ class FreeplayState extends MusicBeatState
 		var event = event("onChangeSelection", EventManager.get(MenuChangeEvent).recycle(curSelected, FlxMath.wrap(curSelected + change, 0, songs.length-1), change));
 		if (event.cancelled) return;
 
+		var oldDiff = null;
+		if(songs[curSelected].difficulties.length > 0){
+			oldDiff = songs[curSelected].difficulties[curDifficulty].toLowerCase();
+		}
+
 		curSelected = event.value;
 		if (event.playMenuSFX) CoolUtil.playMenuSFX(SCROLL, 0.7);
 
-		changeDiff(0, true);
+		var diff = 0;
+		if(oldDiff!=null && songs[curSelected].difficulties.length > 0){
+			for(i=>s in songs[curSelected].difficulties){
+				if(s.toLowerCase()==oldDiff) diff = i;
+			}
+			diff -= curDifficulty;
+		}
+		changeDiff(diff, true);
 
 		#if PRELOAD_ALL
 			autoplayElapsed = 0;

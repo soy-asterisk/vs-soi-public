@@ -113,7 +113,7 @@ class OptionsMenu extends TreeMenu {
 						Logs.trace("A checkbox option requires an \"id\" for option saving.", WARNING);
 						continue;
 					}
-					options.push(new Checkbox(name, desc, node.att.id, FlxG.save.data));
+					options.push(new Checkbox(name, desc, node.att.id, null, FlxG.save.data));
 
 				case "number":
 					if (!node.has.id) {

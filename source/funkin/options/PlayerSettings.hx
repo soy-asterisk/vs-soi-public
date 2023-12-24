@@ -61,11 +61,11 @@ class  PlayerSettings
 		}
 
 		var numGamepads = FlxG.gamepads.numActiveGamepads;
-		if (numGamepads > 0)
+		//if (numGamepads > 0)
 		{
-			var gamepad = FlxG.gamepads.getByID(0);
-			if (gamepad == null)
-				throw 'Unexpected null gamepad. id:0';
+			// var gamepad = FlxG.gamepads.getByID(0);
+			// if (gamepad == null)
+			// 	throw 'Unexpected null gamepad. id:0';
 
 			solo.controls.addDefaultGamepad(0);
 			player1.controls.addDefaultGamepad(0);

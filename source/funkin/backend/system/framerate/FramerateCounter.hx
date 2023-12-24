@@ -35,4 +35,17 @@ class FramerateCounter extends Sprite {
 		fpsLabel.x = fpsNum.x + fpsNum.width;
 		fpsLabel.y = (fpsNum.y + fpsNum.height) - fpsLabel.height;
 	}
+
+    public function resetTextField(){
+		var oldText = fpsNum.text;
+        removeChild(this.fpsNum);
+        fpsNum = new TextField();
+        fpsNum.autoSize = LEFT;
+        fpsNum.x = 0;
+        fpsNum.y = 0;
+        fpsNum.multiline = fpsNum.wordWrap = false;
+        fpsNum.defaultTextFormat = new TextFormat(Framerate.fontName, 18, -1);
+        addChildAt(fpsNum,0);
+		fpsNum.text = oldText;
+    }
 }

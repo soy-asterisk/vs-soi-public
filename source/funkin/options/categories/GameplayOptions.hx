@@ -27,10 +27,12 @@ class GameplayOptions extends OptionsScreen {
 			//説明文はYoshiCrafterEngineから持ってきました
 			"If checked, the game will be played by a bot. Useful for showcasing charts.",
 			"botplay"));
+		#if 0
 		add(new Checkbox(
 			"Naughtyness",
 			"If unchecked, will censor Week 7 cutscenes",
 			"naughtyness"));
+		#end
 		add(new Checkbox(
 			"Camera Zoom on Beat",
 			"If unchecked, will disable camera zooming every 4 beats",
@@ -54,5 +56,10 @@ class GameplayOptions extends OptionsScreen {
 			}
 		}
 		else FlxG.sound.music.volume = 1;
+	}
+
+	public override function close(){
+		FlxG.camera.zoom = 1;
+		super.close();
 	}
 }

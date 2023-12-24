@@ -1,5 +1,6 @@
 package funkin.backend.system;
 
+import funkin.backend.system.framerate.Framerate;
 import funkin.editors.SaveWarning;
 import funkin.backend.assets.AssetsLibraryList;
 import funkin.backend.system.framerate.SystemInfo;
@@ -52,7 +53,7 @@ class Main extends Sprite
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
 
-	public static var vsSoiVersion = "1.0.0";
+	public static var vsSoiVersion = "1.1.0";
 	
 	public static var game:FunkinGame;
 
@@ -74,7 +75,7 @@ class Main extends Sprite
 
 		addChild(game = new FunkinGame(gameWidth, gameHeight, MainState, Options.framerate, Options.framerate, skipSplash, startFullscreen));
 
-		#if (!mobile && !web)
+		#if !mobile
 		addChild(framerateSprite = new funkin.backend.system.framerate.Framerate());
 		framerateSprite.scaleX = framerateSprite.scaleY = stage.window.scale;
 		SystemInfo.init();
@@ -144,11 +145,12 @@ class Main extends Sprite
 			Paths.assetsTree.__defaultLibraries.push(ModsFolder.loadLibraryFromFolder('assets', './assets/', true));
 		#end
 
-
+#if USE_ADAPTED_ASSETS
 		var lib = new AssetLibrary();
 		@:privateAccess
 		lib.__proxy = Paths.assetsTree;
 		Assets.registerLibrary('default', lib);
+#end
 
 		funkin.options.PlayerSettings.init();
 		funkin.savedata.FunkinSave.init();
@@ -171,6 +173,8 @@ class Main extends Sprite
 		#end
 
 		initTransition();
+
+		Framerate.debugMode = Options.fpsCounter ? 1 : 0;
 	}
 
 	public static function refreshAssets() {

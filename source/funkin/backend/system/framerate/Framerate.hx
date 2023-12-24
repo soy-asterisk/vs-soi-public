@@ -58,6 +58,7 @@ class Framerate extends Sprite {
 			switch(e.keyCode) {
 				case #if web Keyboard.NUMBER_3 #else Keyboard.F3 #end: // 3 on web or F3 on windows, linux and other things that runs code
 					debugMode = (debugMode + 1) % 3;
+					Options.fpsCounter = debugMode > 0;
 			}
 		});
 
@@ -76,8 +77,10 @@ class Framerate extends Sprite {
 		__addCategory(new ConductorInfo());
 		__addCategory(new FlixelInfo());
 		__addCategory(new SystemInfo());
+		#if !web
 		__addCategory(new AssetTreeInfo());
-
+		#end
+		
 		#if (gl_stats && !disable_cffi && (!html5 || !canvas))
 		__addCategory(new StatsInfo());
 		#end
@@ -124,5 +127,13 @@ class Framerate extends Sprite {
 			c.y = y;
 			y = c.y + c.height + 4;
 		}
+	}
+
+	public function resetTextField(){
+		for(c in categories){
+			c.resetTextField();
+		}
+		fpsCounter.resetTextField();
+		memoryCounter.resetTextField();
 	}
 }

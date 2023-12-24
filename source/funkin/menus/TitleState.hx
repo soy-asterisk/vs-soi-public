@@ -121,10 +121,15 @@ class TitleState extends MusicBeatState
 
 		FlxG.mouse.visible = false;
 
+		#if 0
 		if (initialized)
 			skipIntro();
 		else
 			initialized = true;
+		#else
+		skipIntro();
+		initialized = true;
+		#end
 
 		add(textGroup);
 	}
@@ -268,7 +273,7 @@ class TitleState extends MusicBeatState
 			}
 			switch (curBeat)
 			{
-				case 1:		createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
+				case 1:		createCoolText(["Funkin' Crew"]);
 				case 3:		addMoreText('present');
 				case 4:		deleteCoolText();
 				case 5:		createCoolText(['In association', 'with']);
@@ -290,8 +295,8 @@ class TitleState extends MusicBeatState
 	public var xml:Access;
 	public var titleLength:Int = 16;
 	public var titleLines:Map<Int, IntroText> = [
-		1 => new IntroText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']),
-		3 => new IntroText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er', 'present']),
+		1 => new IntroText(["Funkin' Crew"]),
+		3 => new IntroText(["Funkin' Crew", 'present']),
 		4 => new IntroText(),
 		5 => new IntroText(['In association', 'with']),
 		7 => new IntroText(['In association', 'with', 'newgrounds', {

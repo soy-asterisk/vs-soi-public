@@ -8,6 +8,9 @@ import funkin.menus.TitleState;
 import funkin.menus.BetaWarningState;
 import funkin.backend.chart.EventsData;
 import flixel.FlxState;
+#if web
+import funkin.menus.ClickToStartState;
+#end
 
 /**
  * Simple state used for loading the game
@@ -49,7 +52,11 @@ class MainState extends FlxState {
 		if (betaWarningShown)
 			FlxG.switchState(new TitleState());
 		else {
-			FlxG.switchState(new BetaWarningState());
+			#if web
+			FlxG.switchState(new ClickToStartState());
+			#else
+			FlxG.switchState(new TitleState());
+			#end
 			betaWarningShown = true;
 		}
 

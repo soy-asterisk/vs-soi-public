@@ -448,7 +448,7 @@ class PlayState extends MusicBeatState
 
 	public  var botplayTxt:FunkinText;
 
-	public var botplay = Options.botplay;
+	public var botplay = Options.botplay && !isStoryMode;
 
 	public var botplayTxtAlphaRot:Float = 0;
 
@@ -570,7 +570,7 @@ class PlayState extends MusicBeatState
 				// case "":
 					// ADD YOUR HARDCODED SCRIPTSa HERE!
 				case "tutorial":
-					addScript('songs/tutorial/scripts/script.hx');
+					addScript(Paths.script('songs/tutorial/scripts/script'));
 				default:
 					var scriptsFolders:Array<String> = ['songs/${SONG.meta.name.toLowerCase()}/scripts', 'data/charts/', 'songs/'];
 
@@ -1106,15 +1106,8 @@ class PlayState extends MusicBeatState
 		persistentDraw = true;
 		paused = true;
 
-		// 1 / 1000 chance for Gitaroo Man easter egg
-		if (FlxG.random.bool(0.1))
-		{
-			// gitaroo man easter egg
-			FlxG.switchState(new GitarooPause());
-		}
-		else {
-			openSubState(new PauseSubState());
-		}
+		
+		openSubState(new PauseSubState());
 
 		updateDiscordPresence();
 	}

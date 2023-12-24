@@ -1,8 +1,11 @@
 package funkin.options.categories;
 
+import funkin.backend.system.framerate.Framerate;
+
 class AppearanceOptions extends OptionsScreen {
 	public override function new() {
 		super("Appearance", "Change Appearance options such as Flashing menus...");
+		#if !web
 		add(new NumOption(
 			"Framerate",
 			"Pretty self explanitory isn't it?",
@@ -11,6 +14,12 @@ class AppearanceOptions extends OptionsScreen {
 			10, // change
 			"framerate", // save name or smth
 			__changeFPS)); // callback
+		#end
+		add(new Checkbox(
+			"FPS Display",
+			"If unchecked, hides the FPS display.",
+			"fpsCounter",
+			__changeFPSView));
 		add(new Checkbox(
 			"Antialiasing",
 			"If unchecked, will disable antialiasing on every sprite. Can boost performances at the cost of sharper, more pixely sprites",
@@ -19,10 +28,12 @@ class AppearanceOptions extends OptionsScreen {
 			"Colored Healthbar",
 			"If unchecked, the game will use the orginal red/green health bar from the week 6 fnf game.",
 			"colorHealthBar"));
+		#if 0
 		add(new Checkbox(
 			"Pixel Perfect Effect",
 			"If checked, Week 6 will have a pixel perfect effect to it enabled, aligning every pixel on the screen.",
 			"week6PixelPerfect"));
+		#end
 		add(new Checkbox(
 			"Flashing Menu",
 			"If unchecked, will disable menu flashing when you select an option in the Main Menu, and other flashs will be slower",
@@ -52,5 +63,9 @@ class AppearanceOptions extends OptionsScreen {
 			FlxG.drawFramerate = FlxG.updateFramerate = Std.int(change);
 		else
 			FlxG.updateFramerate = FlxG.drawFramerate = Std.int(change);
+	}
+
+	private function __changeFPSView(change:Bool){
+		Framerate.debugMode = change ? 1 : 0;
 	}
 }

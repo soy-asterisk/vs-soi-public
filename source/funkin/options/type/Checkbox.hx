@@ -4,6 +4,7 @@ import flixel.math.FlxPoint;
 
 @:allow()
 class Checkbox extends TextOption {
+	public var selectCallbackBool:Bool->Void;
 
 	public var checkbox:FlxSprite;
 	public var checked:Bool;
@@ -22,8 +23,9 @@ class Checkbox extends TextOption {
 	];
 	private var baseCheckboxOffset:FlxPoint = FlxPoint.get();
 
-	public function new(text:String, desc:String, optionName:String, ?parent:Dynamic) {
+	public function new(text:String, desc:String, optionName:String, ?selectCallback:Bool->Void = null, ?parent:Dynamic) {
 		super(text, desc, null);
+		selectCallbackBool = selectCallback;
 
 		if (parent == null)
 			parent = Options;
@@ -61,6 +63,8 @@ class Checkbox extends TextOption {
 	public override function onSelect() {
 		Reflect.setField(parent, optionName, checked = !checked);
 		checkbox.animation.play("checking", true, !checked);
+		if(selectCallbackBool != null)
+			selectCallbackBool(checked);
 	}
 
 	public override function destroy() {

@@ -119,7 +119,7 @@ class CoolUtil
 	 * @param num The length required
 	 */
 	public static inline function addZeros(str:String, num:Int) {
-		while(str.length < num) str = '0${str}';
+		while(Std.string(str).length < num) str = '0${str}';
 		return str;
 	}
 

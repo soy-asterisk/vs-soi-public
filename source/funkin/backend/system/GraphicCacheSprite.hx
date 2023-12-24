@@ -27,11 +27,13 @@ class GraphicCacheSprite extends FlxSprite {
 	public function cache(path:String) {
 		var graphic = FlxG.bitmap.add(path);
 		if (graphic != null) {
+			graphic.bitmap.getTexture(FlxG.stage.context3D);
+			return;
 			// make their useCount one time higher to prevent them from auto being cleared from cache
-			graphic.useCount++;
-			graphic.destroyOnNoUse = false;
-			cachedGraphics.push(graphic);
-			nonRenderedCachedGraphics.push(graphic);
+			// graphic.useCount++;
+			// graphic.destroyOnNoUse = false;
+			// cachedGraphics.push(graphic);
+			// nonRenderedCachedGraphics.push(graphic);
 		}
 	}
 

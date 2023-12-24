@@ -85,13 +85,15 @@ class KeybindSetting extends FlxTypedSpriteGroup<FlxSprite> {
 				Reflect.setField(Options, 'P1_$value', [option1 = key]);
 			updateText();
 			callback();
-		}, function() {
+		}, function(cancel:Bool) {
 			flicker.stop();
 			flicker.destroy();
-			if (p2)
-				Reflect.setField(Options, 'P2_$value', [option2 = 0]);
-			else
-				Reflect.setField(Options, 'P1_$value', [option1 = 0]);
+			if(!cancel){
+				if (p2)
+					Reflect.setField(Options, 'P2_$value', [option2 = 0]);
+				else
+					Reflect.setField(Options, 'P1_$value', [option1 = 0]);
+			}
 			cancelCallback();
 		}));
 	}

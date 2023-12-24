@@ -1,13 +1,19 @@
 # Friday Night Funkin' - vs Soi Mod
-soy＊のアバターキャラである「Soi」と戦う(?)Mod
+soy＊のアバターキャラである「ソイ」(Soi)と戦うMod
 
 Codename Engineで制作しています
+
+[パッチノート](PatchNote.md)
 
 ## 内容
 - Soiと戦うだけのストーリーモード
 - soy＊が作曲した3曲(内一つはHard限定の隠し曲)
 - 一部の画像(ノートなど)を独自のものに変更
-- CNEの改善など
+- Codename Engineの改良
+
+## HTML5ビルド時の注意
+ビルド時に`-final`オプションをつけるとHScriptが壊れるのでつけないでください。
+
 <br><br>
 
 # Friday Night Funkin' - Codename Engine (WIP)

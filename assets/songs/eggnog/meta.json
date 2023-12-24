@@ -1,0 +1,10 @@
+{
+	"difficulties":["EASY","NORMAL","HARD"],
+	"displayName": "Eggnog",
+	"artist":"Kawai Sprite\nCover by soy*",
+	"bpm": 150.0,
+	"icon": "soi",
+	"color": "#A0D1FF",
+	"coopAllowed": true,
+	"opponentModeAllowed": true
+}

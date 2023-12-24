@@ -193,7 +193,8 @@ class XMLUtil {
 					case BEAT:
 						xmlSpr.beatAnims.push(animData.name);
 					case LOOP:
-						xmlSpr.animation.play(animData.name);
+						xmlSpr.playAnim(animData.name);
+						//xmlSpr.animation.play(animData.name);
 					default:
 						// nothing
 				}
